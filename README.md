@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>HACD is the gold. BRICK is the craft.</strong>
+  <strong>HACD is the gold, BRICK is the craft — a fixed-supply building protocol on Hacash.</strong>
 </p>
 
 Static website and dashboard package for the BRICK Protocol project. This repository contains the public landing experience, whitepaper/genesis routing, and the dashboard workspace used for wallet connection, stacked HACD display, workers, construction area, and assets.
