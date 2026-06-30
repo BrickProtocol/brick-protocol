@@ -54,20 +54,3 @@ brick-preview/
     |-- styles.css
     `-- script.js
 ```
-
-## Optional: Publish With GitHub Pages
-
-1. Open your repository on GitHub.
-2. Go to `Settings` -> `Pages`.
-3. Under `Build and deployment`, choose `Deploy from a branch`.
-4. Select branch `main`.
-5. Select folder `/ (root)`.
-6. Save.
-
-If you use GitHub Pages, the homepage will load from the repository root and the dashboard will continue to work from the `dashboard/` folder.
-
-## Notes
-
-- The dashboard lives in the `dashboard/` folder.
-- The main router and embedded pages live in `script.js`.
-- If you deploy on a VPS or static host, keep the folder structure exactly the same.
