@@ -55,27 +55,6 @@ brick-preview/
     `-- script.js
 ```
 
-## How To Upload On GitHub Web
-
-1. Create a new repository on GitHub.
-2. Open the repository page.
-3. Click `Add file` -> `Upload files`.
-4. Drag the full contents of this `brick-preview` folder, except log files.
-5. Wait until all files finish uploading.
-6. Write a commit message like `Initial BRICK Protocol site upload`.
-7. Click `Commit changes`.
-
-## How To Upload With Git
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "Initial BRICK Protocol site upload"
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
-git push -u origin main
-```
-
 ## Optional: Publish With GitHub Pages
 
 1. Open your repository on GitHub.
