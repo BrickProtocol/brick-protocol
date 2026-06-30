@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0D12" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta
+      name="description"
+      content="BRICK Protocol landing page and H-cash Wallet dashboard. Set stones into works, then build and list assets."
+    />
+    <title>BRICK Protocol | H-cash Wallet</title>
+    <link rel="stylesheet" href="styles.css?v=17" />
+  </head>
+  <body>
+    <main class="app" id="appShell">
+      <nav class="shnav" aria-label="Primary navigation">
+        <div class="brand"><b>BRICK</b><span>Protocol</span></div>
+        <div class="links">
+          <button
+            class="btn btn-primary btn-small"
+            type="button"
+            onclick="top.postMessage({brickNav:'launch'},'*');return false;"
+          >
+            Home
+          </button>
+        </div>
+      </nav>
+
+      <section class="dashboard" id="dashboardSection">
+        <header class="wallet-bar panel" aria-label="Wallet connection bar">
+          <div class="wallet-bar-copy">
+            <p class="eyebrow">WALLET BAR</p>
+            <h2>H-Cash Wallet</h2>
+            <p class="wallet-status-text" id="walletStatus">Connection pending</p>
+          </div>
+
+          <div class="wallet-bar-meta">
+            <div class="wallet-chip">
+              <span>Wallet</span>
+              <strong id="walletAddress">-</strong>
+            </div>
+            <button class="btn btn-primary btn-small" id="connectButton" type="button">
+              Connect H-Cash Wallet
+            </button>
+          </div>
+        </header>
+
+        <nav class="dashboard-nav panel" id="dashboardNav" aria-label="Dashboard navigation">
+          <button class="dashboard-tab" type="button" data-view="stack">
+            <span>Stack HACD</span>
+            <strong id="stackTabCount">0</strong>
+          </button>
+          <button class="dashboard-tab" type="button" data-view="workers">
+            <span>Workers</span>
+            <strong id="workerTabCount">0 / 0</strong>
+          </button>
+          <button class="dashboard-tab" type="button" data-view="construction">Construction Area</button>
+          <button class="dashboard-tab" type="button" data-view="assets">Asset</button>
+        </nav>
+
+        <section class="section panel dashboard-module" id="stackBrickSection" hidden aria-labelledby="stackBrickTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">STACK HACD</p>
+              <h3 id="stackBrickTitle">Brick HACD cards</h3>
+            </div>
+            <p class="section-note">Only brick-flagged HACD assets are shown.</p>
+          </div>
+          <div class="stack-grid" id="stackGrid"></div>
+        </section>
+
+        <section class="section panel dashboard-module" id="workersSection" hidden aria-labelledby="workersTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">WORKERS</p>
+              <h3 id="workersTitle">Create Worker</h3>
+            </div>
+            <p class="section-note">You can create only as many workers as the stack HACD count in the connected wallet.</p>
+          </div>
+          <div class="workers-toolbar">
+            <div class="worker-quota">
+              <span class="eyebrow">WORKER QUOTA</span>
+              <strong id="workerQuotaText">0 / 0</strong>
+              <p>This quota comes from the stack HACD count.</p>
+            </div>
+            <button class="btn btn-primary" id="createWorkerButton" type="button">
+              Create Worker
+            </button>
+          </div>
+          <div class="worker-grid" id="workerGrid"></div>
+          <p class="empty-state" id="workerEmpty">No workers created yet.</p>
+        </section>
+
+        <section
+          class="section panel dashboard-module construction-stage"
+          id="constructionSection"
+          hidden
+          aria-labelledby="constructionTitle"
+        >
+          <div class="construction-countdown">
+            <div>
+              <p class="eyebrow">DAILY BRICK COUNTDOWN</p>
+              <strong class="countdown-value" id="rewardCountdown">24:00:00</strong>
+            </div>
+            <p class="section-note">Distribution runs every day at 01:00 and the timer resets to 24 hours.</p>
+          </div>
+
+          <div class="construction-workers">
+            <div class="section-head construction-workers-head">
+              <div>
+                <p class="eyebrow">CURRENT WORKERS</p>
+                <h3 id="constructionWorkersTitle">Select Worker</h3>
+              </div>
+              <p class="section-note">You cannot place bricks without a worker, but you can still view the asset.</p>
+            </div>
+            <div class="construction-worker-grid" id="constructionWorkerGrid"></div>
+            <p class="empty-state" id="constructionWorkerEmpty">No workers have been created yet.</p>
+          </div>
+
+          <div class="section-head construction-shapes-head">
+            <div>
+              <p class="eyebrow">CONSTRUCTION AREA</p>
+              <h3 id="constructionTitle">SELECT ASSET</h3>
+            </div>
+            <p class="section-note">Select a worker first, then choose an asset and start placing bricks.</p>
+          </div>
+
+          <div class="shape-tabs" id="shapeTabs" role="list" aria-label="Asset selector"></div>
+
+          <div class="builder-head">
+            <div>
+              <p class="eyebrow">SITE</p>
+              <h3 id="shapeTitle">Select an asset</h3>
+            </div>
+            <div class="builder-actions">
+              <button class="btn btn-secondary btn-small" id="clearDraftButton" type="button">
+                Clear Draft
+              </button>
+              <div class="progress-pill" id="builderProgress">0 / 0</div>
+            </div>
+          </div>
+
+          <div class="board-wrap">
+            <div class="board" id="boardGrid" aria-label="Construction grid"></div>
+          </div>
+
+          <div class="construction-complete" id="constructionComplete" hidden>
+            <div class="construction-complete-copy">
+              <p class="eyebrow">SHAPE COMPLETED</p>
+              <h4>Send to Assets</h4>
+              <p>The last brick has been placed. You can now save this HACD card as an asset.</p>
+            </div>
+            <button class="btn btn-primary" id="sendAssetButton" type="button" data-send-asset>
+              Send to Assets
+            </button>
+          </div>
+
+          <div class="palette-head">
+            <div>
+              <span class="eyebrow">MY BRICKS</span>
+              <p>16 colored unit bricks. Each color is shown with a square counter and its pool share.</p>
+            </div>
+            <span class="hint-chip">Tap the brick above to cancel</span>
+          </div>
+          <div class="palette-grid" id="brickPalette"></div>
+        </section>
+
+        <section class="section panel dashboard-module" id="assetsSection" hidden aria-labelledby="assetsTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">ASSET</p>
+              <h3 id="assetsTitle">Completed Assets</h3>
+            </div>
+            <p class="section-note">If empty, no built assets are available yet.</p>
+          </div>
+          <div class="asset-grid" id="assetGrid"></div>
+          <p class="empty-state" id="assetEmpty">No built assets have been created yet.</p>
+        </section>
+      </section>
+
+      <div class="modal" id="workerModal" hidden>
+        <div class="modal-backdrop" data-close-worker-modal></div>
+        <div class="modal-card panel" role="dialog" aria-modal="true" aria-labelledby="workerModalTitle">
+          <button class="modal-close" type="button" data-close-worker-modal aria-label="Close">
+            ×
+          </button>
+          <p class="eyebrow">WORKER</p>
+          <h3 id="workerModalTitle">Create New Worker</h3>
+          <p class="modal-desc">
+            Enter a worker name and confirm. The limit is capped by the stack HACD count in the connected wallet.
+          </p>
+          <form class="sale-form" id="workerForm">
+            <label>
+              <span>Worker name</span>
+              <input id="workerNameInput" type="text" placeholder="e.g. Atlas" maxlength="40" />
+            </label>
+            <p class="form-error" id="workerError" hidden></p>
+            <div class="modal-actions">
+              <button class="btn btn-secondary" type="button" data-close-worker-modal>Cancel</button>
+              <button class="btn btn-primary" type="submit">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="assetModal" hidden>
+        <div class="modal-backdrop" data-close-asset-modal></div>
+        <div class="modal-card panel asset-modal-card" role="dialog" aria-modal="true" aria-labelledby="assetModalTitle">
+          <button class="modal-close" type="button" data-close-asset-modal aria-label="Close">
+            ×
+          </button>
+          <p class="eyebrow">ASSET</p>
+          <h3 id="assetModalTitle">Asset details</h3>
+          <div class="asset-modal-preview" id="assetModalPreview"></div>
+          <div class="asset-modal-meta" id="assetModalMeta"></div>
+          <div class="asset-modal-colors" id="assetModalColors"></div>
+        </div>
+      </div>
+
+      <div class="modal" id="saleModal" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-card panel" role="dialog" aria-modal="true" aria-labelledby="saleModalTitle">
+          <button class="modal-close" type="button" data-close-modal aria-label="Close">
+            ×
+          </button>
+          <p class="eyebrow">SELL</p>
+          <h3 id="saleModalTitle">List Asset on Market</h3>
+          <p class="modal-desc">
+            This asset will be listed on the market automatically. Enter HAC and HACD prices first.
+          </p>
+          <form class="sale-form" id="saleForm">
+            <label>
+              <span>HAC price</span>
+              <input id="saleHacInput" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+            <label>
+              <span>HACD price</span>
+              <input id="saleHacdInput" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+            <p class="form-error" id="saleError" hidden></p>
+            <div class="modal-actions">
+              <button class="btn btn-secondary" type="button" data-close-modal>Cancel</button>
+              <button class="btn btn-primary" type="submit">Sell on Market</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+    </main>
+
+    <script src="script.js?v=17"></script>
+  </body>
+</html>
