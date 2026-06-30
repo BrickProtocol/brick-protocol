@@ -1,7 +1,7 @@
 # BRICK Protocol
 
 <p align="center">
-  <img src="./favicon.png" alt="BRICK Protocol logo" width="120">
+  <img src="./logo-diamond.png" alt="BRICK Protocol logo" width="120">
 </p>
 
 <p align="center">
