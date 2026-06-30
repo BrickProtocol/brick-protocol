@@ -1,11 +1,11 @@
 # BRICK Protocol
 
 <p align="center">
-  <img src="./logo-diamond.png" alt="BRICK Protocol logo" width="120">
+  <img src="./assets/github/logo-diamond.png" alt="BRICK Protocol logo" width="120">
 </p>
 
 <p align="center">
-  <strong>HACD is the gold, BRICK is the craft — a fixed-supply building protocol on Hacash.</strong>
+  <strong>HACD is the gold. BRICK is the craft.</strong>
 </p>
 
 Static website and dashboard package for the BRICK Protocol project. This repository contains the public landing experience, whitepaper/genesis routing, and the dashboard workspace used for wallet connection, stacked HACD display, workers, construction area, and assets.
@@ -46,8 +46,9 @@ brick-preview/
 |-- README.md
 |-- .gitignore
 |-- assets/
-|   `-- github/
-|       `-- brick-home-preview.png
+|   |-- github/
+|   |   |-- brick-home-preview.png
+|   |   `-- logo-diamond.png
 `-- dashboard/
     |-- index.html
     |-- styles.css
@@ -57,6 +58,14 @@ brick-preview/
 ## Local Preview
 
 This project is static, so no build step is required.
+
+```bash
+py -m http.server 4173
+```
+
+Then open:
+
+- `http://127.0.0.1:4173/`
 
 ## Files You Should Upload To GitHub
 
@@ -69,6 +78,7 @@ Upload these files and folders:
 - `README.md`
 - `.gitignore`
 - `assets/github/brick-home-preview.png`
+- `assets/github/logo-diamond.png`
 - `dashboard/index.html`
 - `dashboard/styles.css`
 - `dashboard/script.js`
