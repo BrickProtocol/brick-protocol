@@ -55,40 +55,6 @@ brick-preview/
     `-- script.js
 ```
 
-## Local Preview
-
-This project is static, so no build step is required.
-
-```bash
-py -m http.server 4173
-```
-
-Then open:
-
-- `http://127.0.0.1:4173/`
-
-## Files You Should Upload To GitHub
-
-Upload these files and folders:
-
-- `index.html`
-- `styles.css`
-- `script.js`
-- `favicon.png`
-- `README.md`
-- `.gitignore`
-- `assets/github/brick-home-preview.png`
-- `assets/github/logo-diamond.png`
-- `dashboard/index.html`
-- `dashboard/styles.css`
-- `dashboard/script.js`
-
-Do not upload:
-
-- `server.err.log`
-- `server.out.log`
-- Any temporary local test files
-
 ## How To Upload On GitHub Web
 
 1. Create a new repository on GitHub.
